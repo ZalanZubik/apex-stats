@@ -8,11 +8,14 @@ axios.defaults.baseURL = process.env.REACT_APP_TRN_API_URL;
 
 class StatProvider extends React.Component {
   state = {
-    stats: {}
+    stats: {},
+    platform: 'origin',
+    username: ''
   }
 
-  componentDidMount() {
-    axios.get('/profile/origin/hexoo', {
+  getStats = e => {
+    e.preventDefault();
+    axios.get(`/profile/${this.state.platform}/${this.state.username}`, {
       headers: {
         'TRN-Api-Key': process.env.REACT_APP_TRN_API_KEY
       }
@@ -22,11 +25,23 @@ class StatProvider extends React.Component {
       .catch(err => console.log(err));
   }
 
+  setPlatform = e => {
+    this.setState({ platform: e.target.id });
+  }
+
+  setUsername = e => {
+    this.setState({ username: e.target.value });
+  }
+
   render() {
     return (
-      <StatContext.Provider value={{ ...this.state }}>
+      <StatContext.Provider value={{
+        ...this.state,
+        setPlatform: this.setPlatform,
+        setUsername: this.setUsername,
+        getStats: this.getStats
+      }}>
         {this.props.children}
-        {console.log(this.state.stats)}
       </StatContext.Provider>
     )
   }

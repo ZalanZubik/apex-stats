@@ -1,6 +1,11 @@
 :root {
-  --backgroundColor: #953036;
-  --textColor: #fff;
+  --background: #953036;
+  --text: #FFF;
+  --lightRed: #DA292A;
+  --darkerRed: #b20000;
+  --inputsBackground: #FFF;
+  --gray: #BEBEBE;
+  --grayHover: #686868;
 }
 
 * {
@@ -10,7 +15,10 @@
 }
 
 body {
-  background-color: var(--backgroundColor);
-  color: var(--textColor);
+  background-color: var(--background);
+  color: var(--text);
   text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  line-height: 1.5;
 }
