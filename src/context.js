@@ -8,25 +8,30 @@ axios.defaults.baseURL = process.env.REACT_APP_TRN_API_URL;
 
 class StatProvider extends React.Component {
   state = {
-    stats: {},
     platform: 'origin',
-    username: ''
+    username: '',
+    error: null,
+    stats: null
   }
 
-  getStats = e => {
-    e.preventDefault();
-    axios.get(`/profile/${this.state.platform}/${this.state.username}`, {
-      headers: {
-        'TRN-Api-Key': process.env.REACT_APP_TRN_API_KEY
-      }
-    }).then(res => {
-      this.setState({ stats: res.data });
-    })
-      .catch(err => console.log(err));
+  getStats = async (platform, username) => {
+    try {
+      let res = await axios.get(`/profile/${platform}/${username}`, {
+        headers: {
+          'TRN-Api-Key': process.env.REACT_APP_TRN_API_KEY
+        }
+      });
+      this.setState({ stats: res.data.data });
+      console.log(this.state.stats);
+    }
+    catch (err) {
+      console.log(err);
+    };
   }
 
-  setPlatform = e => {
-    this.setState({ platform: e.target.id });
+
+  setPlatform = platform => {
+    this.setState({ platform });
   }
 
   setUsername = e => {

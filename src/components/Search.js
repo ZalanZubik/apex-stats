@@ -5,24 +5,31 @@ import styled from 'styled-components';
 import SearchBackground from '../images/SearchBackground.jpg';
 import { useContext } from 'react';
 import { StatContext } from '../context';
+import { useHistory } from 'react-router-dom';
 
 export default function Search() {
   const context = useContext(StatContext);
-  const { setPlatform, setUsername, getStats, platform } = context;
+  const { setPlatform, setUsername, platform, username } = context;
+  const history = useHistory();
+
+  function redirectPage(e) {
+    e.preventDefault();
+    history.push(`/profile/${platform}/${username}`);
+  }
 
   return (
     <SearchContainer>
       <h1>Apex Legends Stats Tracker &amp; Leaderboards</h1>
       <h3 className="subtitle">Track your stats in Apex Legends and standings in the leaderboards!</h3>
-      <form className="search-form" onSubmit={getStats}>
+      <form className="search-form" onSubmit={redirectPage}>
         <h3>CHECK PLAYER RANK AND STATS</h3>
         <div className="inputs">
-          <span className="input-icon" title="Windows" id="origin" onClick={setPlatform}><FaWindows style={{ color: platform === 'origin' ? 'var(--darkerRed)' : '', verticalAlign: "middle" }} /></span>
-          <span className="input-icon" title="PlayStation 4" id="psn" onClick={setPlatform}><FaPlaystation style={{ color: platform === 'psn' ? 'var(--darkerRed)' : '', verticalAlign: "middle" }} /></span>
-          <span className="input-icon" title="Xbox One" id="xbl" onClick={setPlatform}><FaXbox style={{ color: platform === 'xbl' ? 'var(--darkerRed)' : '', verticalAlign: "middle" }} /></span>
-          <input className="input-text" placeholder='Apex username' onChange={setUsername} />
+          <FaWindows className="input-icon" title="Windows" onClick={() => setPlatform("origin")} style={{ color: platform === 'origin' ? 'var(--darkerRed)' : '', verticalAlign: "middle" }} />
+          <FaPlaystation className="input-icon" title="PlayStation 4" onClick={() => setPlatform("psn")} style={{ color: platform === 'psn' ? 'var(--darkerRed)' : '', verticalAlign: "middle" }} />
+          <FaXbox className="input-icon" title="Xbox One" onClick={() => setPlatform("xbl")} style={{ color: platform === 'xbl' ? 'var(--darkerRed)' : '', verticalAlign: "middle" }} />
+          <input type="text" className="input-text" placeholder='Apex username' onChange={setUsername} required />
         </div>
-        <button className="submit-button" type="submit"><FiSearch style={{ verticalAlign: "middle" }} /> SEARCH</button>
+        <button className="search-button" type="submit"><FiSearch style={{ verticalAlign: "middle" }} />{' '}SEARCH</button>
       </form>
     </SearchContainer>
   )
@@ -31,9 +38,8 @@ export default function Search() {
 const SearchContainer = styled.div`
   background: url(${SearchBackground}) top/cover no-repeat;
   width: 100%;
-  height: 100%;
-  min-height: 70vh;
-  padding-top: 14rem;
+  height: 100vh;
+  padding-top: 34vh;
 
   h1 {
     padding-bottom: 1rem;
@@ -64,7 +70,7 @@ const SearchContainer = styled.div`
 
   .input-icon {
     color: var(--gray);
-    font-size: 1.2rem;
+    font-size: 2rem;
     padding: 0.2rem;
     margin: 0 0.4rem;
     cursor: pointer;
@@ -86,19 +92,18 @@ const SearchContainer = styled.div`
     font-size: 1.1rem;
   }
 
-  .submit-button {
-    background-color: rgba(255,255,255,0);
-    border: none;
-    outline: none;
-    color: var(--text);
-    font-size: 1.1rem;
-    font-weight: bold;
-    padding: 0.82rem 1.2rem;
-    cursor: pointer;
-  }
+  .search-button {
+  background-color: rgba(255,255,255,0);
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 0.82rem 1.2rem;
+  cursor: pointer;
+}
 
-  .submit-button:hover {
-    background-color: rgba(255,255,255,0.25);
-  }
-
+.search-button:hover {
+  background-color: rgba(255,255,255,0.25);
+}
 `;
