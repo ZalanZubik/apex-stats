@@ -10,7 +10,8 @@ class StatProvider extends React.Component {
   state = {
     platform: 'origin',
     username: '',
-    error: null,
+    loading: true,
+    error: false,
     stats: null
   }
 
@@ -21,14 +22,14 @@ class StatProvider extends React.Component {
           'TRN-Api-Key': process.env.REACT_APP_TRN_API_KEY
         }
       });
-      this.setState({ stats: res.data.data });
+      this.setState({ stats: res.data.data, loading: false });
       console.log(this.state.stats);
     }
     catch (err) {
       console.log(err);
+      this.setState({ loading: false, error: true });
     };
   }
-
 
   setPlatform = platform => {
     this.setState({ platform });
@@ -38,13 +39,18 @@ class StatProvider extends React.Component {
     this.setState({ username: e.target.value });
   }
 
+  resetStats = () => {
+    this.setState({ stats: null, loading: true, error: false });
+  }
+
   render() {
     return (
       <StatContext.Provider value={{
         ...this.state,
         setPlatform: this.setPlatform,
         setUsername: this.setUsername,
-        getStats: this.getStats
+        getStats: this.getStats,
+        resetStats: this.resetStats
       }}>
         {this.props.children}
       </StatContext.Provider>

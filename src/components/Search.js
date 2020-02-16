@@ -9,28 +9,30 @@ import { useHistory } from 'react-router-dom';
 
 export default function Search() {
   const context = useContext(StatContext);
-  const { setPlatform, setUsername, platform, username } = context;
+  const { setPlatform, setUsername, platform, username, resetStats } = context;
   const history = useHistory();
 
   function redirectPage(e) {
+    resetStats();
     e.preventDefault();
     history.push(`/profile/${platform}/${username}`);
   }
 
   return (
     <SearchContainer>
-      <h1>Apex Legends Stats Tracker &amp; Leaderboards</h1>
-      <h3 className="subtitle">Track your stats in Apex Legends and standings in the leaderboards!</h3>
-      <form className="search-form" onSubmit={redirectPage}>
-        <h3>CHECK PLAYER RANK AND STATS</h3>
-        <div className="inputs">
-          <FaWindows className="input-icon" title="Windows" onClick={() => setPlatform("origin")} style={{ color: platform === 'origin' ? 'var(--darkerRed)' : '', verticalAlign: "middle" }} />
-          <FaPlaystation className="input-icon" title="PlayStation 4" onClick={() => setPlatform("psn")} style={{ color: platform === 'psn' ? 'var(--darkerRed)' : '', verticalAlign: "middle" }} />
-          <FaXbox className="input-icon" title="Xbox One" onClick={() => setPlatform("xbl")} style={{ color: platform === 'xbl' ? 'var(--darkerRed)' : '', verticalAlign: "middle" }} />
-          <input type="text" className="input-text" placeholder='Apex username' onChange={setUsername} required />
-        </div>
-        <button className="search-button" type="submit"><FiSearch style={{ verticalAlign: "middle" }} />{' '}SEARCH</button>
-      </form>
+      <div className="search-card">
+        <h1>Hi Friend! It's me, Statfinder.</h1>
+        <h2 className="subtitle">Track your stats in Apex Legends and standings in the leaderboards!</h2>
+        <form className="search-form" onSubmit={redirectPage}>
+          <div className="inputs">
+            <FaWindows className="input-icon" title="Windows" onClick={() => setPlatform("origin")} style={{ color: platform === 'origin' ? 'var(--lightRed)' : '', verticalAlign: "middle" }} />
+            <FaPlaystation className="input-icon" title="PlayStation 4" onClick={() => setPlatform("psn")} style={{ color: platform === 'psn' ? 'var(--lightRed)' : '', verticalAlign: "middle" }} />
+            <FaXbox className="input-icon" title="Xbox One" onClick={() => setPlatform("xbl")} style={{ color: platform === 'xbl' ? 'var(--lightRed)' : '', verticalAlign: "middle" }} />
+            <input type="text" className="input-text" placeholder='Apex username' onChange={setUsername} required />
+          </div>
+          <button className="search-button" type="submit"><FiSearch style={{ verticalAlign: "middle" }} />{' '}SEARCH</button>
+        </form>
+      </div>
     </SearchContainer>
   )
 }
@@ -41,31 +43,41 @@ const SearchContainer = styled.div`
   height: 100vh;
   padding-top: 34vh;
 
+  .search-card {
+    background-color: rgba(0,0,0,0.45);
+    display: inline-block;
+    padding: 2rem 2rem;
+    width: 85vw;
+    max-width: 755px;
+  }
+
   h1 {
     padding-bottom: 1rem;
     font-size: 2.2rem;
+    letter-spacing: 1px;
   }
 
   .subtitle {
-    padding-bottom: 4rem;
+    padding-bottom: 2rem;
   }
   
   .search-form {
     width: 85vw;
-    max-width: 900px;
+    max-width: 640px;
+    padding: 0 1rem;
     margin: auto;
-    height: 4.5rem;
-    background-color: var(--lightRed);
+    height: 3rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    position: relative;
   }
 
   .inputs {
     background-color: var(--inputsBackground);
     display: flex;
     align-items: center;
-    height: 65%;
+    height: 100%;
   }
 
   .input-icon {
@@ -93,17 +105,21 @@ const SearchContainer = styled.div`
   }
 
   .search-button {
-  background-color: rgba(255,255,255,0);
-  border: none;
-  outline: none;
-  color: var(--text);
-  font-size: 1.1rem;
-  font-weight: bold;
-  padding: 0.82rem 1.2rem;
-  cursor: pointer;
-}
+    background-color: rgba(255,255,255,0);
+    border: 2px solid white;
+    outline: none;
+    color: var(--text);
+    font-size: 1.1rem;
+    padding: 0.73rem 1.1rem;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+    letter-spacing: 1px;
+  }
 
-.search-button:hover {
-  background-color: rgba(255,255,255,0.25);
-}
+  .search-button:hover {
+    border: 2px solid var(--lightRed);
+    color: var(--lightRed);
+  }
 `;

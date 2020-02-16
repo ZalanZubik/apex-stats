@@ -1,28 +1,29 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { StatContext } from '../context';
 import { useContext, useEffect } from 'react';
 import styled from 'styled-components';
+import Loading from './Loading';
+import PlayerNotFound from './PlayerNotFound';
 
 export default function PlayerPage() {
   const { platform, username } = useParams();
   const context = useContext(StatContext);
-  let { getStats, stats } = context;
+  let { getStats, stats, loading, error } = context;
 
   useEffect(() => {
     getStats(platform, username);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!stats) {
-    return (
-      <NotFoundContainer>
-        <h1>Player not found!</h1>
-        <Link to="/" className="return-button">Return</Link>
-      </NotFoundContainer>
-    )
+  if (loading === true) {
+    return <Loading />
+  }
+  else if (loading === false && error === true) {
+    return <PlayerNotFound />
   }
 
-  return (
+  else return (
     <PlayerContainer>
       <div className="container">
         <h1 className="username">
@@ -112,30 +113,4 @@ const PlayerContainer = styled.div`
   li:first-child p {
     font-size: 1.5rem;
   }
-`;
-
-const NotFoundContainer = styled.div`
-  height: 100%;
-
-  h1 {
-    padding-top: 30vh;
-    padding-bottom: 2rem;
-  }
-
-  .return-button {
-    background-color: rgba(0,255,255,1);
-    border: none;
-    outline: none;
-    color: var(--text);
-    font-size: 1.1rem;
-    font-weight: bold;
-    padding: 0.82rem 1.2rem;
-    cursor: pointer;
-    text-decoration: none;
-  }
-
-  .return-button:hover {
-    background-color: rgba(255,255,255,0.25);
-  }
-
 `;
