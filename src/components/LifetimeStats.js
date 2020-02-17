@@ -6,8 +6,8 @@ export default function LifetimeStats({ platform, stats }) {
   return (
     <LifetimeStatsContainer>
       <div className="user-info">
-        <img src={stats.platformInfo.avatarUrl} alt="user avatar" className="user-avatar" />
-        <h1 className="username">{stats.platformInfo.platformUserHandle}</h1>
+        {stats.platformInfo ? <img src={stats.platformInfo.avatarUrl} alt="user avatar" className="user-avatar" /> : ''}
+        <h1 className="username">{stats.platformInfo ? stats.platformInfo.platformUserHandle : ''}</h1>
         <p>{platform === 'origin' ? <FaWindows title="Origin (PC)" className="platform-icon" /> : platform === 'xbl' ? <FaXbox title="Xbox One" className="platform-icon" /> : <FaPlaystation title="PlayStation 4" className="platform-icon" />}</p>
       </div>
 
