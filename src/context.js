@@ -4,8 +4,6 @@ import axios from 'axios';
 const StatContext = React.createContext();
 const StatConsumer = StatContext.Consumer;
 
-// axios.defaults.baseURL = "https://public-api.tracker.gg/v2/apex/standard/";
-
 class StatProvider extends React.Component {
   state = {
     platform: 'origin',
