@@ -36,8 +36,9 @@ const NavContainer = styled.nav`
     text-decoration: none;
     padding: 0.7rem 0.7rem;
     font-size: 1.1rem;
-    color: var(--gray);
+    color: var(--lighterGray);
     margin: 0 3rem;
+    transition: border 450ms ease-out, color 450ms ease-out;
   }
 
   .nav-links a:hover {

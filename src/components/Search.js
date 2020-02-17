@@ -25,7 +25,7 @@ export default function Search() {
         <h2 className="subtitle">Track your stats in Apex Legends and standings in the leaderboards!</h2>
         <form className="search-form" onSubmit={redirectPage}>
           <div className="inputs">
-            <FaWindows className="input-icon" title="Windows" onClick={() => setPlatform("origin")} style={{ color: platform === 'origin' ? 'var(--lightRed)' : '', verticalAlign: "middle" }} />
+            <FaWindows className="input-icon" title="Origin (PC)" onClick={() => setPlatform("origin")} style={{ color: platform === 'origin' ? 'var(--lightRed)' : '', verticalAlign: "middle" }} />
             <FaPlaystation className="input-icon" title="PlayStation 4" onClick={() => setPlatform("psn")} style={{ color: platform === 'psn' ? 'var(--lightRed)' : '', verticalAlign: "middle" }} />
             <FaXbox className="input-icon" title="Xbox One" onClick={() => setPlatform("xbl")} style={{ color: platform === 'xbl' ? 'var(--lightRed)' : '', verticalAlign: "middle" }} />
             <input type="text" className="input-text" placeholder='Apex username' onChange={setUsername} required />
@@ -44,7 +44,7 @@ const SearchContainer = styled.div`
   padding-top: 34vh;
 
   .search-card {
-    background-color: rgba(0,0,0,0.45);
+    background-color: rgba(26, 26, 26, 0.5);
     display: inline-block;
     padding: 2rem 2rem;
     width: 85vw;
@@ -86,6 +86,7 @@ const SearchContainer = styled.div`
     padding: 0.2rem;
     margin: 0 0.4rem;
     cursor: pointer;
+    transition: color 350ms ease-out;
   }
 
   .input-icon:hover {
@@ -116,6 +117,7 @@ const SearchContainer = styled.div`
     text-transform: uppercase;
     display: inline-block;
     letter-spacing: 1px;
+    transition: border 450ms ease-out, color 450ms ease-out;
   }
 
   .search-button:hover {

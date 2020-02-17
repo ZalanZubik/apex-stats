@@ -8,7 +8,7 @@ export default function ErrorPage() {
     <ErrorContainer>
       <div className="error-card">
         <h1>You should not be here, Friend!</h1>
-        <Link className="return-button" to="/">return</Link>
+        <Link className="return-button" to="/">home</Link>
       </div>
     </ErrorContainer>
   )
@@ -17,31 +17,12 @@ export default function ErrorPage() {
 const ErrorContainer = styled.div`
   height: 100vh;
   background: url(${WashingPathfinder}) top/cover no-repeat;
-  padding-top: 34vh;
+  padding-top: 37vh;
 
   .error-card {
     background-color: rgba(0,0,0,0.4);
     display: inline-block;
     padding: 2rem 1.6rem;
     letter-spacing: 1px;
-  }
-
-  .return-button {
-    background-color: none;
-    border: 2px solid white;
-    outline: none;
-    color: var(--text);
-    font-size: 1.1rem;
-    padding: 0.6rem 1.1rem;
-    cursor: pointer;
-    text-decoration: none;
-    text-transform: uppercase;
-    display: inline-block;
-    margin-top: 1.6rem;
-  }
-
-  .return-button:hover {
-    border: 2px solid var(--lightRed);
-    color: var(--lightRed);
   }
 `;

@@ -5,7 +5,9 @@
   --darkerRed: #b20000;
   --inputsBackground: #FFF;
   --gray: #A8A8A8;
+  --lighterGray: #BEBEBE;
   --grayHover: #686868;
+  --darkBackground: rgba(26, 26, 26, 0.9);
 }
 
 * {
@@ -21,4 +23,24 @@ body {
   font-family: "Roboto", sans-serif;
   font-weight: bold;
   line-height: 1.5;
+}
+
+.return-button {
+  background-color: none;
+  border: 2px solid white;
+  outline: none;
+  color: var(--text);
+  font-size: 1.1rem;
+  padding: 0.6rem 1.1rem;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-top: 1.6rem;
+  transition: border 450ms ease-out, color 450ms ease-out;
+}
+
+.return-button:hover {
+  border: 2px solid var(--lightRed);
+  color: var(--lightRed);
 }
