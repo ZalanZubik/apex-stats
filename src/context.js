@@ -4,8 +4,6 @@ import axios from 'axios';
 const StatContext = React.createContext();
 const StatConsumer = StatContext.Consumer;
 
-axios.defaults.baseURL = process.env.REACT_APP_TRN_API_URL;
-
 class StatProvider extends React.Component {
   state = {
     platform: 'origin',
@@ -23,7 +21,6 @@ class StatProvider extends React.Component {
         }
       });
       this.setState({ stats: res.data.data, loading: false });
-      console.log(this.state.stats);
     }
     catch (err) {
       console.log(err);
