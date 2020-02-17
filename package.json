@@ -2,7 +2,6 @@
   "name": "apex-tracker",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://public-api.tracker.gg/v2/apex/standard",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
