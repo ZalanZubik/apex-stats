@@ -5,7 +5,7 @@ import { useContext, useEffect } from 'react';
 import Loading from './Loading';
 import PlayerNotFound from './PlayerNotFound';
 import LifetimeStats from './LifetimeStats';
-import PlayerPageBackground from '../images/PlayerPageBackground.jpg';
+import LegendStats from './LegendStats';
 import styled from 'styled-components';
 
 export default function PlayerPage() {
@@ -30,12 +30,11 @@ export default function PlayerPage() {
   else return (
     <PlayerPageContainer>
       <LifetimeStats platform={platform} stats={stats} />
+      <LegendStats stats={stats} />
     </PlayerPageContainer>
   )
 }
 
 const PlayerPageContainer = styled.div`
-  background: url(${PlayerPageBackground}) center/cover no-repeat;
   min-height: 100vh;
-  padding-top: 7rem;
 `;
