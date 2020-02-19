@@ -8,20 +8,19 @@ export default function Legend({ legend }) {
     for (let stat in legend.stats) {
       tempStats.push(legend.stats[stat]);
     }
-    return tempStats;
+    return tempStats.sort((a, b) => a.displayName.localeCompare(b.displayName));
   }
 
   const legendStats = formatData();
 
   return (
     <LegendContainer>
-      <div className="legend">
+      <div className="legend" style={{ background: legend.metadata ? `url(${legend.metadata.tallImageUrl}) top/170px no-repeat` : '', backgroundPositionY: legend.metadata ? '7px' : '', backgroundColor: 'var(--darkBackground)' }}>
         <h2 className="legend-name">{legend.metadata ? legend.metadata.name : '-'}</h2>
-        {legend.metadata ? <img src={legend.metadata.tallImageUrl} alt="" className="legend-img" /> : ''}
       </div>
       <div className="legend-stat-container">
         <ul className="stat-list">
-          {legendStats.map((stat, index) => <li key={index}><h3>{stat.displayName}</h3><h2>{stat.displayValue}</h2></li>)}
+          {legendStats.map((stat, index) => <li key={index}><h3>{stat.displayName}</h3><h2>{Number.isInteger(stat.value) ? stat.value.toLocaleString('nu') : stat.value}</h2></li>)}
         </ul>
       </div>
     </LegendContainer>
@@ -38,44 +37,40 @@ const LegendContainer = styled.div`
     padding-top: 2rem;
 
   .legend {
-    background: var(--darkBackground);
-    height: 277px;
-    overflow: hidden;
+    min-height: 192px;
+    position: relative;
   }
 
   .legend-name {
-    padding-top: 0.4rem;
-    padding-left: 0.4rem;
-    text-align: left;
-  }
-
-  .legend-img {
-    width: 160px;
-    left: 0;
-    clip: rect(0px,160px,300px,0px);
+    display: block;
+    bottom: 1rem;
+    padding: 0 0.4rem;
+    position: absolute;
+    background-color: var(--lightRed);
   }
 
   .legend-stat-container {
     background: var(--darkBackground);
-  }
+  } 
 
   .stat-list {
-    display: grid;
-    grid-template-rows: auto auto auto;
-    grid-template-columns: auto auto auto auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 1.3rem;
+    padding-left: 1.3rem;
   }
 
   .stat-list li {
     list-style-type: none;
     border-left: 4px solid var(--lightRed);
-    margin-left: 1.3rem;
+    margin-right: 3rem;
     margin-top: 1.3rem;
     text-align: left;
     padding-left: 0.5rem;
+    min-width: 130px;
   }
 
   .stat-list li h3 {
     font-weight: normal;
   }
-
 `;

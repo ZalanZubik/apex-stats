@@ -26,8 +26,10 @@ const NavContainer = styled.nav`
     overflow: hidden;
     list-style-type: none;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    max-width: 460px;
+    margin: auto;
   }
 
   .nav-links a {
@@ -37,7 +39,6 @@ const NavContainer = styled.nav`
     padding: 0.7rem 0.7rem;
     font-size: 1.1rem;
     color: var(--lighterGray);
-    margin: 0 3rem;
     transition: border 450ms ease-out, color 450ms ease-out;
   }
 

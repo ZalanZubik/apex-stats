@@ -18,9 +18,9 @@ export default function LifetimeStats({ platform, stats }) {
               <h3>Active Legend</h3>
               <h2>{stats.metadata ? stats.metadata.activeLegendName : '-'}</h2>
             </div>
-            <div className="img-cut">
+            {<div className="img-cut">
               {stats.segments[1].metadata ? <img src={stats.segments[1].metadata.tallImageUrl} alt="active legend" className="active-legend-img" /> : ''}
-            </div>
+            </div>}
           </div>
           <div>
             <ul>
@@ -53,15 +53,15 @@ export default function LifetimeStats({ platform, stats }) {
                 <h2>{stats.segments[0].stats.matchesPlayed ? stats.segments[0].stats.matchesPlayed.value.toLocaleString('nu') : '-'}</h2>
               </li>
               <li>
-                <h3>Kills per Match</h3>
+                <h3>Kills Per Match</h3>
                 <h2>{stats.segments[0].stats.killsPerMatch ? stats.segments[0].stats.killsPerMatch.value : '-'}</h2>
               </li>
               <li>
-                <h3>Damage per Match</h3>
+                <h3>Damage Per Match</h3>
                 <h2>{stats.segments[0].stats.damagePerMatch ? stats.segments[0].stats.damagePerMatch.value : '-'}</h2>
               </li>
               <li>
-                <h3>Kills as Kill Leader</h3>
+                <h3>Kills As Kill Leader</h3>
                 <h2>{stats.segments[0].stats.killsAsKillLeader ? stats.segments[0].stats.killsAsKillLeader.value.toLocaleString('nu') : '-'}</h2>
               </li>
               <li>
@@ -78,7 +78,7 @@ export default function LifetimeStats({ platform, stats }) {
 
 const LifetimeStatsContainer = styled.div`
   background: url(${LifetimeStatsBackground}) center/cover no-repeat;
-  height: 100vh;
+  min-height: 100vh;
 
   .stat-container {
     width: 85vw;

@@ -18,15 +18,28 @@ export default function PlayerNotFound() {
 const NotFoundContainer = styled.div`
   height: 100vh;
   background: url(${SadPathfinder}) top/cover no-repeat;
-  padding-top: 32vh;
+  padding-top: 33vh;
 
   .not-found-card {
     background-color: rgba(0,0,0,0.6);
     display: inline-block;
     padding: 2rem 1.6rem;
-    max-width: 85vw;
-    width: 400px;
+    max-width: 400px;
+    width: 80vw;
     letter-spacing: 1px;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+  }
+
+  @media screen and (max-width: 479px){
+    .not-found-card {
+      padding: 2rem 1.1rem;
+    }
+    h1 {
+      font-size: 1.4rem;
+    }
   }
 
 `;

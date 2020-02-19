@@ -3,6 +3,7 @@ import { FaPlaystation, FaWindows, FaXbox } from 'react-icons/fa';
 import { FiSearch } from 'react-icons/fi';
 import styled from 'styled-components';
 import SearchBackground from '../images/SearchBackground.jpg';
+import SearchBackgroundSmall from '../images/SearchBackgroundSmall.jpg';
 import { useContext } from 'react';
 import { StatContext } from '../context';
 import { useHistory } from 'react-router-dom';
@@ -21,7 +22,7 @@ export default function Search() {
   return (
     <SearchContainer>
       <div className="search-card">
-        <h1>Hi Friend! It's me, Statfinder.</h1>
+        <h1 className="title">Hi Friend! It's me, Statfinder.</h1>
         <h2 className="subtitle">Track your stats in Apex Legends and standings in the leaderboards!</h2>
         <form className="search-form" onSubmit={redirectPage}>
           <div className="inputs">
@@ -45,13 +46,13 @@ const SearchContainer = styled.div`
 
   .search-card {
     background-color: rgba(26, 26, 26, 0.5);
-    display: inline-block;
-    padding: 2rem 2rem;
+    margin: auto;
+    padding: 2rem;
     width: 85vw;
     max-width: 755px;
   }
 
-  h1 {
+  .title {
     padding-bottom: 1rem;
     font-size: 2.2rem;
     letter-spacing: 1px;
@@ -62,22 +63,17 @@ const SearchContainer = styled.div`
   }
   
   .search-form {
-    width: 85vw;
-    max-width: 640px;
-    padding: 0 1rem;
-    margin: auto;
-    height: 3rem;
+    margin: 0 1rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    position: relative;
   }
 
   .inputs {
     background-color: var(--inputsBackground);
     display: flex;
     align-items: center;
-    height: 100%;
+    height: 3rem;
   }
 
   .input-icon {
@@ -123,5 +119,73 @@ const SearchContainer = styled.div`
   .search-button:hover {
     border: 2px solid var(--lightRed);
     color: var(--lightRed);
+  }
+
+  @media screen and (max-width: 991px){
+    background: url(${SearchBackgroundSmall}) center/cover no-repeat;
+  }
+
+  @media screen and (max-width: 767px){
+    .search-card {
+      padding: 1.5rem 1rem;
+    }
+
+    .title {
+      font-size: 1.8rem;
+    }
+
+    .subtitle {
+      font-size: 1.4rem;
+      padding-bottom: 2rem;
+    }
+
+    .search-form {
+      flex-direction: column;
+    }
+
+    .input-text {
+      width: 200px;
+      padding-left: 1rem;
+    }
+
+    .search-button {
+      margin-top: 1rem;
+      margin-left: 0;
+    }
+  }
+
+  @media screen and (max-width: 479px){
+    .search-card {
+      width: 90vw;
+    }
+    
+    .title {
+      font-size: 1.5rem;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+    }
+
+    .input-icon {
+      font-size: 1.7rem;
+      padding: 0.1rem;
+      margin: 0 0.4rem;
+    }
+
+    .input-text {
+      width: 160px;
+      padding-left: 0.2rem;
+      
+    }
+  }
+
+  @media screen and (max-width: 340px){
+    .search-card {
+      width: 95vw;
+    }
+    .input-text {
+      width: 140px;
+    }
   }
 `;
