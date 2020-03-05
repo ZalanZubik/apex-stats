@@ -4,13 +4,20 @@ import { FaPlaystation, FaWindows, FaXbox } from 'react-icons/fa';
 import LifetimeStatsBackground from '../images/LifetimeStatsBackground.jpg';
 
 export default function LifetimeStats({ platform, stats }) {
+  console.log(stats);
   return (
     <LifetimeStatsContainer>
       <div className="stat-container">
         <div className="user-info">
-          <div className="user-avatar-cut">{stats.platformInfo ? <img src={stats.platformInfo.avatarUrl} alt="user avatar" className="user-avatar" /> : ''}</div>
+          <div className="user-images">
+            <div className="user-avatar-cut">
+              {stats.platformInfo ? <img src={stats.platformInfo.avatarUrl} alt="user avatar" className="user-avatar" /> : ''}
+            </div>
+            <img className="country-icon" src={`https://cdn.thetrackernetwork.com/cdn/flags/4x3/${stats.userInfo.countryCode.toLowerCase()}.svg`} alt={stats.userInfo.countryCode} title={stats.userInfo.countryCode} />
+          </div>
           <h1 className="username">{stats.platformInfo ? stats.platformInfo.platformUserHandle : ''}</h1>
           <p>{platform === 'origin' ? <FaWindows title="Origin (PC)" className="platform-icon" /> : platform === 'xbl' ? <FaXbox title="Xbox One" className="platform-icon" /> : <FaPlaystation title="PlayStation 4" className="platform-icon" />}</p>
+
         </div>
         <div className="grid">
           <div className="active-legend-container">
@@ -96,12 +103,16 @@ const LifetimeStatsContainer = styled.div`
     background: var(--darkBackground);
   }
 
+  .user-images {
+    position: relative;
+  }
+
   .user-avatar-cut {
     height: 120px;
     overflow: hidden;
-    margin-right: 0.8rem;
+    margin-right: 1.7rem;
     border-radius: 50%;
-    border: 3px solid var(--gray);
+    border: 3px solid #fff;
   }
 
   .user-avatar {
@@ -111,7 +122,7 @@ const LifetimeStatsContainer = styled.div`
   }
 
   .username {
-    font-size: 2.1rem;
+    font-size: 2.2rem;
     letter-spacing: 1px;
   }
 
@@ -119,6 +130,13 @@ const LifetimeStatsContainer = styled.div`
     vertical-align: middle;
     padding-left: 0.8rem;
     font-size: 2.5rem;
+  }
+
+  .country-icon {
+    height: 1.9rem;
+    position: absolute;
+    bottom: 0.4rem;
+    margin-left: 1.5rem;
   }
 
   .grid {
