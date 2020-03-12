@@ -1,13 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { StatContext } from '../context';
+import { useContext } from 'react';
 
 export default function Header() {
+  const context = useContext(StatContext);
+  let { searchType, searchPlatform, searchLegend } = context;
+
   return (
     <NavContainer>
       <ul className="nav-links">
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/leaderboards">Leaderboards</Link></li>
+        <li><Link to={`/leaderboards/${searchPlatform}/${searchType}/${searchLegend}`}>Leaderboards</Link></li>
       </ul>
     </NavContainer>
   )

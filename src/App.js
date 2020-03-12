@@ -13,7 +13,7 @@ function App() {
       <Header />
       <Switch>
         <Route exact path='/' component={HomePage} />
-        <Route exact path='/leaderboards' component={LeaderboardsPage} />
+        <Route exact path='/leaderboards/:searchPlatform/:searchType/:searchLegend' component={LeaderboardsPage} />
         <Route exact path='/profile/:platform/:username' component={PlayerPage} />
         <Route component={ErrorPage} />
       </Switch>

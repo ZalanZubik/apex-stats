@@ -10,17 +10,36 @@ class StatProvider extends React.Component {
     username: '',
     loading: true,
     error: false,
-    stats: null
+    stats: null,
+    leaderboardStats: null,
+    searchType: 'RankScore',
+    searchPlatform: 'all',
+    searchLegend: 'all'
   }
 
   getStats = async (platform, username) => {
     try {
-      let res = await axios.get(`/api/profile/${platform}/${username}`, {
+      let res = await axios.get(`/api/v2/apex/standard/profile/${platform}/${username}`, {
         headers: {
           'TRN-Api-Key': process.env.REACT_APP_TRN_API_KEY
         }
       });
-      this.setState({ stats: res.data.data, loading: false });
+      this.setState({ loading: false, stats: res.data.data });
+    }
+    catch (err) {
+      console.log(err);
+      this.setState({ loading: false, error: true });
+    };
+  }
+
+  getLeaderboardStats = async (searchType, searchPlatform, searchLegend) => {
+    try {
+      let res = await axios.get(`/api/v1/apex/standard/leaderboards/${searchType}?platform=${searchPlatform}&legend=${searchLegend}`, {
+        headers: {
+          'TRN-Api-Key': process.env.REACT_APP_TRN_API_KEY
+        }
+      });
+      this.setState({ loading: false, leaderboardStats: res.data.data });
     }
     catch (err) {
       console.log(err);
@@ -47,7 +66,8 @@ class StatProvider extends React.Component {
         setPlatform: this.setPlatform,
         setUsername: this.setUsername,
         getStats: this.getStats,
-        resetStats: this.resetStats
+        resetStats: this.resetStats,
+        getLeaderboardStats: this.getLeaderboardStats
       }}>
         {this.props.children}
       </StatContext.Provider>

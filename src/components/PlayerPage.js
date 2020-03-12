@@ -26,7 +26,6 @@ export default function PlayerPage() {
   else if (loading === false && error === true) {
     return <PlayerNotFound />
   }
-
   else return (
     <PlayerPageContainer>
       <LifetimeStats platform={platform} stats={stats} />

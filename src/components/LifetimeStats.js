@@ -4,7 +4,6 @@ import { FaPlaystation, FaWindows, FaXbox } from 'react-icons/fa';
 import LifetimeStatsBackground from '../images/LifetimeStatsBackground.jpg';
 
 export default function LifetimeStats({ platform, stats }) {
-  console.log(stats);
   return (
     <LifetimeStatsContainer>
       <div className="stat-container">
@@ -13,11 +12,10 @@ export default function LifetimeStats({ platform, stats }) {
             <div className="user-avatar-cut">
               {stats.platformInfo ? <img src={stats.platformInfo.avatarUrl} alt="user avatar" className="user-avatar" /> : ''}
             </div>
-            <img className="country-icon" src={`https://cdn.thetrackernetwork.com/cdn/flags/4x3/${stats.userInfo.countryCode.toLowerCase()}.svg`} alt={stats.userInfo.countryCode} title={stats.userInfo.countryCode} />
+            {stats.userInfo.countryCode ? <img className="country-icon" src={`https://cdn.thetrackernetwork.com/cdn/flags/4x3/${stats.userInfo.countryCode.toLowerCase()}.svg`} alt={stats.userInfo.countryCode} title={stats.userInfo.countryCode} /> : ''}
           </div>
           <h1 className="username">{stats.platformInfo ? stats.platformInfo.platformUserHandle : ''}</h1>
           <p>{platform === 'origin' ? <FaWindows title="Origin (PC)" className="platform-icon" /> : platform === 'xbl' ? <FaXbox title="Xbox One" className="platform-icon" /> : <FaPlaystation title="PlayStation 4" className="platform-icon" />}</p>
-
         </div>
         <div className="grid">
           <div className="active-legend-container">
@@ -56,7 +54,7 @@ export default function LifetimeStats({ platform, stats }) {
           <div>
             <ul>
               <li>
-                <h3>Games Played</h3>
+                <h3>Matches Played</h3>
                 <h2>{stats.segments[0].stats.matchesPlayed ? stats.segments[0].stats.matchesPlayed.value.toLocaleString('nu') : '-'}</h2>
               </li>
               <li>
