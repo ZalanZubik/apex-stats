@@ -13,7 +13,7 @@ export default function PlayerPage() {
   const context = useContext(StatContext);
   let { getStats, loading, error, stats } = context;
 
-  document.title = `Statfinder – ${username} ${platform === 'origin' ? '(PC)' : platform === 'xbl' ? '(Xbox)' : '(PS4)'}`;
+  document.title = `${username} ${platform === 'origin' ? '(PC)' : platform === 'xbl' ? '(Xbox)' : '(PS4)'} – Statfinder`;
 
   useEffect(() => {
     getStats(platform, username);

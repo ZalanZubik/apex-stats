@@ -2,15 +2,29 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaPlaystation, FaWindows, FaXbox, FaTwitch, FaTwitter } from 'react-icons/fa';
 import { GiPodiumWinner, GiPodiumSecond, GiPodiumThird } from 'react-icons/gi';
+import { useContext } from 'react';
+import { StatContext } from '../context';
+import { useHistory } from 'react-router-dom';
 
 export default function LeaderboardPlayer({ player }) {
+  const context = useContext(StatContext);
+  const { resetStats } = context;
+  const history = useHistory();
+
+  function redirectPage() {
+    const platform = player.owner.metadata.platformSlug;
+    const username = player.owner.metadata.platformUserHandle;
+    resetStats();
+    history.push(`/profile/${platform}/${username}`);
+  }
+
   return (
     <PlayerContainer>
       <div className="rank">
         <p>{player.rank === 1 ? <GiPodiumWinner title="First" className="rank-icon" /> : player.rank === 2 ? <GiPodiumSecond title="Second" className="rank-icon" /> : player.rank === 3 ? <GiPodiumThird title="Third" className="rank-icon" /> : player.rank}</p>
       </div>
       <div className="player">
-        <p className="player-name">{player.owner.metadata.platformUserHandle ? player.owner.metadata.platformUserHandle : '-'}</p>
+        <p className="player-name" onClick={redirectPage} >{player.owner.metadata.platformUserHandle ? player.owner.metadata.platformUserHandle : '-'}</p>
         <p>{player.owner.metadata.platformSlug === 'origin' ? <FaWindows title="Origin (PC)" className="platform-icon" /> : player.owner.metadata.platformSlug === 'xbl' ? <FaXbox title="Xbox One" className="platform-icon" /> : <FaPlaystation title="PlayStation 4" className="platform-icon" />}</p>
         <p>{player.owner.metadata.twitch ? <a title="Twitch" href={`https://twitch.tv/${player.owner.metadata.twitter}`} target="_blank" rel="noopener noreferrer"><FaTwitch /></a> : ''}</p>
         <p>{player.owner.metadata.twitter ? <a title="Twitter" href={`https://twitter.com/${player.owner.metadata.twitter}`} target="_blank" rel="noopener noreferrer"><FaTwitter /></a> : ''}</p>

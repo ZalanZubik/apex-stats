@@ -10,7 +10,7 @@ export default function LeaderboardsPage() {
   const { searchType, searchPlatform, searchLegend } = useParams();
   const context = useContext(StatContext);
   let { getLeaderboardStats, loading, error, leaderboardStats } = context;
-  document.title = `Statfinder – ${leaderboardStats ? leaderboardStats.metadata.title : ''} Leaderboard`;
+  document.title = `${leaderboardStats ? leaderboardStats.metadata.title + ' – Statfinder' : 'Leaderboards – Statfinder'}`;
 
   useEffect(() => {
     getLeaderboardStats(searchType, searchPlatform, searchLegend);
@@ -19,7 +19,7 @@ export default function LeaderboardsPage() {
 
   return (
     <LeaderboardsPageContainer>
-      {loading === true ? 'Loading...' : loading === false && error === true ? 'Please try again later...' : <Leaderboard leaderboardStats={leaderboardStats} />}
+      {loading === true ? 'Loading...' : loading === false && error === true ? 'Please try again later...' : <Leaderboard leaderboardStats={leaderboardStats} searchPlatform={searchPlatform} />}
     </LeaderboardsPageContainer>
   )
 }
