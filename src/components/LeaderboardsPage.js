@@ -1,5 +1,8 @@
 import React from 'react';
 import Leaderboard from './Leaderboard';
+import LeaderboardSearch from './LeaderboardSearch';
+import LeaderboardLoading from './LeaderboardLoading';
+import LeaderboardCantLoad from './LeaderboardCantLoad';
 import styled from 'styled-components';
 import { StatContext } from '../context';
 import { useContext, useEffect } from 'react';
@@ -9,6 +12,7 @@ import LegendStatsBackground from '../images/LegendStatsBackground.jpg';
 export default function LeaderboardsPage() {
   const { searchType, searchPlatform, searchLegend } = useParams();
   const context = useContext(StatContext);
+
   let { getLeaderboardStats, loading, error, leaderboardStats } = context;
   document.title = `${leaderboardStats ? leaderboardStats.metadata.title + ' – Statfinder' : 'Leaderboards – Statfinder'}`;
 
@@ -19,7 +23,8 @@ export default function LeaderboardsPage() {
 
   return (
     <LeaderboardsPageContainer>
-      {loading === true ? 'Loading...' : loading === false && error === true ? 'Please try again later...' : <Leaderboard leaderboardStats={leaderboardStats} searchPlatform={searchPlatform} />}
+      <LeaderboardSearch searchType={searchType} searchPlatform={searchPlatform} searchLegend={searchLegend} />
+      {loading === true ? <LeaderboardLoading /> : loading === false && error === true ? <LeaderboardCantLoad /> : <Leaderboard leaderboardStats={leaderboardStats} searchPlatform={searchPlatform} searchLegend={searchLegend} />}
     </LeaderboardsPageContainer>
   )
 }

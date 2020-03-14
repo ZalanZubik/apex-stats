@@ -5,6 +5,7 @@
 - React
 - Tracker Network API
 - Context API
+- React Hooks
 - Axios
 - React Router
 - React Icons
