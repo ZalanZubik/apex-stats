@@ -20,7 +20,7 @@ export default function Legend({ legend }) {
       </div>
       <div className="legend-stat-container">
         <ul className="stat-list">
-          {legendStats.map((stat, index) => <li key={index}><h3>{stat.displayName}</h3><h2>{Number.isInteger(stat.value) ? stat.value.toLocaleString('nu') : stat.value}</h2></li>)}
+          {legendStats.map((stat, index) => <li key={index}><h3>{stat.displayName}</h3><h2>{Number.isInteger(stat.value) ? stat.value.toLocaleString('hu-HU') : stat.value}</h2></li>)}
         </ul>
       </div>
     </LegendContainer>

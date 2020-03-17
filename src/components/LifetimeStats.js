@@ -31,23 +31,23 @@ export default function LifetimeStats({ platform, stats }) {
             <ul>
               <li>
                 <h3>Apex Level</h3>
-                <h2>{stats.segments[0].stats.level ? stats.segments[0].stats.level.value.toLocaleString('nu') : '-'}</h2>
+                <h2>{stats.segments[0].stats.level ? stats.segments[0].stats.level.value.toLocaleString('hu-HU') : '-'}</h2>
               </li>
               <li>
                 <h3>Total Kills</h3>
-                <h2>{stats.segments[0].stats.kills ? stats.segments[0].stats.kills.value.toLocaleString('nu') : '-'}</h2>
+                <h2>{stats.segments[0].stats.kills ? stats.segments[0].stats.kills.value.toLocaleString('hu-HU') : '-'}</h2>
               </li>
               <li>
                 <h3>Total Damage</h3>
-                <h2>{stats.segments[0].stats.damage ? stats.segments[0].stats.damage.value.toLocaleString('nu') : '-'}</h2>
+                <h2>{stats.segments[0].stats.damage ? stats.segments[0].stats.damage.value.toLocaleString('hu-HU') : '-'}</h2>
               </li>
               <li>
                 <h3>Headshots</h3>
-                <h2>{stats.segments[0].stats.headshots ? stats.segments[0].stats.headshots.value.toLocaleString('nu') : '-'}</h2>
+                <h2>{stats.segments[0].stats.headshots ? stats.segments[0].stats.headshots.value.toLocaleString('hu-HU') : '-'}</h2>
               </li>
               <li>
                 <h3>Finishers</h3>
-                <h2>{stats.segments[0].stats.finishers ? stats.segments[0].stats.finishers.value.toLocaleString('nu') : '-'}</h2>
+                <h2>{stats.segments[0].stats.finishers ? stats.segments[0].stats.finishers.value.toLocaleString('hu-HU') : '-'}</h2>
               </li>
             </ul>
           </div>
@@ -55,7 +55,7 @@ export default function LifetimeStats({ platform, stats }) {
             <ul>
               <li>
                 <h3>Matches Played</h3>
-                <h2>{stats.segments[0].stats.matchesPlayed ? stats.segments[0].stats.matchesPlayed.value.toLocaleString('nu') : '-'}</h2>
+                <h2>{stats.segments[0].stats.matchesPlayed ? stats.segments[0].stats.matchesPlayed.value.toLocaleString('hu-HU') : '-'}</h2>
               </li>
               <li>
                 <h3>Kills Per Match</h3>
@@ -67,11 +67,11 @@ export default function LifetimeStats({ platform, stats }) {
               </li>
               <li>
                 <h3>Kills As Kill Leader</h3>
-                <h2>{stats.segments[0].stats.killsAsKillLeader ? stats.segments[0].stats.killsAsKillLeader.value.toLocaleString('nu') : '-'}</h2>
+                <h2>{stats.segments[0].stats.killsAsKillLeader ? stats.segments[0].stats.killsAsKillLeader.value.toLocaleString('hu-HU') : '-'}</h2>
               </li>
               <li>
                 <h3>Revives</h3>
-                <h2>{stats.segments[0].stats.revives ? stats.segments[0].stats.revives.value.toLocaleString('nu') : '-'}</h2>
+                <h2>{stats.segments[0].stats.revives ? stats.segments[0].stats.revives.value.toLocaleString('hu-HU') : '-'}</h2>
               </li>
             </ul>
           </div>

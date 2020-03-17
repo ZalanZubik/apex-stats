@@ -15,7 +15,7 @@ const CantLoad = styled.div`
   margin: auto;
   overflow: auto;
   background: var(--darkBackground);
-  height: 6.3rem;
+  min-height: 6.3rem;
   display: flex;
   align-items: center;
   justify-content: center;

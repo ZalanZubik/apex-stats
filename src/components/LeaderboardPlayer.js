@@ -18,6 +18,9 @@ export default function LeaderboardPlayer({ player }) {
     history.push(`/profile/${platform}/${username}`);
   }
 
+  console.log(player.value);
+  console.log(player.owner.stats[0].value);
+
   return (
     <PlayerContainer>
       <div className="rank">
@@ -33,10 +36,10 @@ export default function LeaderboardPlayer({ player }) {
         {player.owner.metadata.countryCode ? <img src={`https://cdn.thetrackernetwork.com/cdn/flags/4x3/${player.owner.metadata.countryCode.toLowerCase()}.svg`} alt={player.owner.metadata.countryCode} title={player.owner.metadata.countryCode} /> : ''}
       </div>
       <div className="type">
-        <p>{!player.value ? '-' : Number.isInteger(player.value) ? player.value.toLocaleString('nu') : player.value}</p>
+        <p>{!player.value ? '-' : Number.isInteger(player.value) ? player.value.toLocaleString('hu-HU') : player.value}</p>
       </div>
       <div className="matches">
-        <p>{player.owner.stats[0].value ? player.owner.stats[0].value.toLocaleString('nu') : '-'}</p>
+        <p>{player.owner.stats[0].value ? player.owner.stats[0].value.toLocaleString('hu-HU') : '-'}</p>
       </div>
     </PlayerContainer>
   )
@@ -109,6 +112,34 @@ const PlayerContainer = styled.div`
 
   .type, .matches {
     justify-content: flex-end;
+  }
+
+  @media (max-width: 1100px) {
+    grid-template-columns: 1fr 3fr 2fr 2fr;
+
+    .player {
+      padding-left: 0rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+    }
+
+    .country {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr 3fr 2fr;
+
+    .type {
+      margin-right: 2rem;
+    }
+
+    .matches {
+      display: none;
+    }
   }
 
 `;

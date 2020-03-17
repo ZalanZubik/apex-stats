@@ -90,7 +90,6 @@ const SearchContainer = styled.div`
     display: flex;
     justify-content: center;
     margin: auto;
-    flex-wrap: wrap;
   }
 
   .select-container p {
@@ -114,5 +113,15 @@ const SearchContainer = styled.div`
     margin: 0 1rem;
     cursor: pointer;
     outline: none;
+  }
+
+  @media (max-width: 686px) {
+    .select-container {
+      flex-direction: column;
+    }
+
+    .select-container p {
+      text-align: center;
+    }
   }
 `;

@@ -10,9 +10,9 @@ export default function Header() {
 
   return (
     <NavContainer>
-      <ul className="nav-links">
+      <ul>
         <li><Link to="/">Home</Link></li>
-        <li><Link to={`/leaderboards/${searchPlatform}/${searchType}/${searchLegend}`}>Leaderboards</Link></li>
+        <li><a href={`/leaderboards/${searchPlatform}/${searchType}/${searchLegend}`}>Leaderboards</a></li>
       </ul>
     </NavContainer>
   )
@@ -26,7 +26,7 @@ const NavContainer = styled.nav`
   height: 3.8rem;
   background-color: rgba(19, 19, 19, 0.6);
 
-  .nav-links {
+  ul {
     height: 100%;
     overflow: hidden;
     list-style-type: none;
@@ -37,7 +37,7 @@ const NavContainer = styled.nav`
     margin: auto;
   }
 
-  .nav-links a {
+  a {
     display: block;
     text-transform: uppercase;
     text-decoration: none;
@@ -47,8 +47,7 @@ const NavContainer = styled.nav`
     transition: border 450ms ease-out, color 450ms ease-out;
   }
 
-  .nav-links a:hover {
+  a:hover {
     color: var(--text);
   }
-
 `;

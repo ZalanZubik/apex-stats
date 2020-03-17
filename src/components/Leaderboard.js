@@ -62,4 +62,31 @@ const LeaderboardContainer = styled.div`
   .matches {
     margin-right: 2.5rem;
   }
+
+  @media (max-width: 1100px) {
+    font-size: 0.8em;
+
+    .leaderboard-header {
+      grid-template-columns: 1fr 3fr 2fr 2fr;
+    }
+
+    .country {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .leaderboard-header {
+      grid-template-columns: 1fr 3fr 2fr;
+    }
+
+    .type {
+      margin-right: 2rem;
+    }
+
+    .matches {
+      display: none;
+    }
+  }
+
 `;
