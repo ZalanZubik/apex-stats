@@ -8,13 +8,16 @@ import { StatContext } from '../context';
 import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import LegendStatsBackground from '../images/LegendStatsBackground.jpg';
+import LegendStatsBackgroundLow from '../images/LegendStatsBackground_lowres.jpg';
 
 export default function LeaderboardsPage() {
   const { searchType, searchPlatform, searchLegend } = useParams();
   const context = useContext(StatContext);
 
   let { getLeaderboardStats, loading, error, leaderboardStats } = context;
-  document.title = `${leaderboardStats ? leaderboardStats.metadata.title + ' – Statfinder' : 'Leaderboards – Statfinder'}`;
+  document.title = `${
+    leaderboardStats ? leaderboardStats.metadata.title + ' – Statfinder' : 'Leaderboards – Statfinder'
+  }`;
 
   useEffect(() => {
     getLeaderboardStats(searchType, searchPlatform, searchLegend);
@@ -23,15 +26,31 @@ export default function LeaderboardsPage() {
 
   return (
     <LeaderboardsPageContainer>
-      <LeaderboardSearch searchType={searchType} searchPlatform={searchPlatform} searchLegend={searchLegend} />
-      {loading === true ? <LeaderboardLoading /> : loading === false && error === true ? <LeaderboardCantLoad /> : <Leaderboard leaderboardStats={leaderboardStats} searchPlatform={searchPlatform} searchLegend={searchLegend} />}
+      <LeaderboardSearch
+        searchType={searchType}
+        searchPlatform={searchPlatform}
+        searchLegend={searchLegend}
+      />
+      {loading === true ? (
+        <LeaderboardLoading />
+      ) : loading === false && error === true ? (
+        <LeaderboardCantLoad />
+      ) : (
+        <Leaderboard
+          leaderboardStats={leaderboardStats}
+          searchPlatform={searchPlatform}
+          searchLegend={searchLegend}
+        />
+      )}
     </LeaderboardsPageContainer>
-  )
+  );
 }
 
 const LeaderboardsPageContainer = styled.div`
   min-height: 100vh;
   padding-top: 7rem;
   padding-bottom: 8rem;
-  background: url(${LegendStatsBackground}) center/cover no-repeat;
+  background: url(${LegendStatsBackground}) center/cover no-repeat,
+    url(${LegendStatsBackgroundLow}) center/cover no-repeat;
+  background-attachment: fixed;
 `;

@@ -3,7 +3,9 @@ import { FaPlaystation, FaWindows, FaXbox } from 'react-icons/fa';
 import { FiSearch } from 'react-icons/fi';
 import styled from 'styled-components';
 import SearchBackground from '../images/SearchBackground.jpg';
+import SearchBackgroundLow from '../images/SearchBackground_lowres.jpg';
 import SearchBackgroundSmall from '../images/SearchBackgroundSmall.jpg';
+import SearchBackgroundSmallLow from '../images/SearchBackgroundSmall_lowres.jpg';
 import { useContext } from 'react';
 import { StatContext } from '../context';
 import { useHistory } from 'react-router-dom';
@@ -21,25 +23,48 @@ export default function Search() {
 
   return (
     <SearchContainer>
-      <div className="search-card">
-        <h1 className="title">Hi Friend! It's me, Statfinder.</h1>
-        <h2 className="subtitle">Track your stats in Apex Legends and standings in the leaderboards!</h2>
-        <form className="search-form" onSubmit={redirectPage}>
-          <div className="inputs">
-            <FaWindows className="input-icon" title="Origin (PC)" onClick={() => setPlatform("origin")} style={{ color: platform === 'origin' ? 'var(--lightRed)' : '', verticalAlign: "middle" }} />
-            <FaPlaystation className="input-icon" title="PlayStation 4" onClick={() => setPlatform("psn")} style={{ color: platform === 'psn' ? 'var(--lightRed)' : '', verticalAlign: "middle" }} />
-            <FaXbox className="input-icon" title="Xbox One" onClick={() => setPlatform("xbl")} style={{ color: platform === 'xbl' ? 'var(--lightRed)' : '', verticalAlign: "middle" }} />
-            <input type="text" className="input-text" placeholder='Apex username' onChange={setUsername} required />
+      <div className='search-card'>
+        <h1 className='title'>Hi Friend! It's me, Statfinder.</h1>
+        <h2 className='subtitle'>Track your stats in Apex Legends and standings in the leaderboards!</h2>
+        <form className='search-form' onSubmit={redirectPage}>
+          <div className='inputs'>
+            <FaWindows
+              className='input-icon'
+              title='Origin (PC)'
+              onClick={() => setPlatform('origin')}
+              style={{ color: platform === 'origin' ? 'var(--lightRed)' : '', verticalAlign: 'middle' }}
+            />
+            <FaPlaystation
+              className='input-icon'
+              title='PlayStation 4'
+              onClick={() => setPlatform('psn')}
+              style={{ color: platform === 'psn' ? 'var(--lightRed)' : '', verticalAlign: 'middle' }}
+            />
+            <FaXbox
+              className='input-icon'
+              title='Xbox One'
+              onClick={() => setPlatform('xbl')}
+              style={{ color: platform === 'xbl' ? 'var(--lightRed)' : '', verticalAlign: 'middle' }}
+            />
+            <input
+              type='text'
+              className='input-text'
+              placeholder='Apex username'
+              onChange={setUsername}
+              required
+            />
           </div>
-          <button className="search-button" type="submit"><FiSearch style={{ verticalAlign: "middle" }} />{' '}SEARCH</button>
+          <button className='search-button' type='submit'>
+            <FiSearch style={{ verticalAlign: 'middle' }} /> SEARCH
+          </button>
         </form>
       </div>
     </SearchContainer>
-  )
+  );
 }
 
 const SearchContainer = styled.div`
-  background: url(${SearchBackground}) top/cover no-repeat;
+  background: url(${SearchBackground}) top/cover no-repeat, url(${SearchBackgroundLow}) top/cover no-repeat;
   width: 100%;
   height: 100vh;
   padding-top: 34vh;
@@ -61,7 +86,7 @@ const SearchContainer = styled.div`
   .subtitle {
     padding-bottom: 2rem;
   }
-  
+
   .search-form {
     margin: 0 1rem;
     display: flex;
@@ -102,7 +127,7 @@ const SearchContainer = styled.div`
   }
 
   .search-button {
-    background-color: rgba(255,255,255,0);
+    background-color: rgba(255, 255, 255, 0);
     border: 2px solid white;
     outline: none;
     color: var(--text);
@@ -121,11 +146,12 @@ const SearchContainer = styled.div`
     color: var(--lightRed);
   }
 
-  @media screen and (max-width: 991px){
-    background: url(${SearchBackgroundSmall}) center/cover no-repeat;
+  @media screen and (max-width: 991px) {
+    background: url(${SearchBackgroundSmall}) center/cover no-repeat,
+      url(${SearchBackgroundSmallLow}) center/cover no-repeat;
   }
 
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     .search-card {
       padding: 1.5rem 1rem;
     }
@@ -154,11 +180,11 @@ const SearchContainer = styled.div`
     }
   }
 
-  @media screen and (max-width: 479px){
+  @media screen and (max-width: 479px) {
     .search-card {
       width: 90vw;
     }
-    
+
     .title {
       font-size: 1.5rem;
     }
@@ -176,11 +202,10 @@ const SearchContainer = styled.div`
     .input-text {
       width: 160px;
       padding-left: 0.2rem;
-      
     }
   }
 
-  @media screen and (max-width: 340px){
+  @media screen and (max-width: 340px) {
     .search-card {
       width: 95vw;
     }
